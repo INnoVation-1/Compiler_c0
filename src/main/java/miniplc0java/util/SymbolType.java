@@ -5,5 +5,7 @@ public enum SymbolType {
     DOUBLE,
     UN_INIT,
     VOID,
-    NONE
+    NONE,
+    STRING,
+    CHAR
 }

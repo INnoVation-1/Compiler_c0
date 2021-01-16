@@ -1,5 +1,8 @@
 package miniplc0java.util;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Symbol {
     public String name;
     public SymbolKind kind;
@@ -8,6 +11,7 @@ public class Symbol {
     public int pos;
     public int returnSlots;
     public String returnType;
+    public List<String> requiredInit = new ArrayList<String>();
 
     public Symbol(String name, SymbolKind kind, SymbolType type, int pos) {
         this.name = name;

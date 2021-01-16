@@ -27,12 +27,34 @@ public class Program {
         }
     }
 
+    public void write8ByteByCal(int s, PrintStream d) throws IOException {
+        String temp = Integer.toHexString(s);
+
+        for(; temp.length() < 16;){
+            temp = "0" + temp;
+        }
+        for(int i = 0; i + 2 <= temp.length(); i+=2){
+            d.write(Integer.parseInt(temp.substring(i, i + 2), 16));
+        }
+    }
+
     public void write4ByteByCal(int s, PrintStream d) throws IOException {
         String temp = Integer.toHexString(s);
 
         for(; temp.length() < 8;){
             temp = "0" + temp;
-        }System.out.println("-----------" + temp);
+        }
+        for(int i = 0; i + 2 <= temp.length(); i+=2){
+            d.write(Integer.parseInt(temp.substring(i, i + 2), 16));
+        }
+    }
+
+    public void write2ByteByCal(int s, PrintStream d) throws IOException {
+        String temp = Integer.toHexString(s);
+
+        for(; temp.length() < 4;){
+            temp = "0" + temp;
+        }
         for(int i = 0; i + 2 <= temp.length(); i+=2){
             d.write(Integer.parseInt(temp.substring(i, i + 2), 16));
         }
@@ -43,7 +65,7 @@ public class Program {
     }
 
     public void exportBinary(String s) throws IOException{
-        FileOutputStream fos = new FileOutputStream(s);
+        //FileOutputStream fos = new FileOutputStream(s);
         //DataOutputStream dos = new DataOutputStream(fos);
 
         PrintStream dos = new PrintStream(new FileOutputStream(s));
@@ -65,7 +87,7 @@ public class Program {
             }
             write4ByteByCal(global.count, dos);
             if(global.value.length() == 0){
-                write4ByteByCal(0, dos);
+                write8ByteByCal(0, dos);
             }else{
                 for(int i = 0; i < global.value.length(); i++){
                     writeChar(global.value.charAt(i), dos);
@@ -75,6 +97,7 @@ public class Program {
         //fs.write("Fns\n");
         //Fns
         //fs.write("\n");
+        write4ByteByCal(functions.size(), dos);
         for(Function function : functions){
             write4ByteByCal(function.name, dos);
             write4ByteByCal(function.returnSlots, dos);
@@ -87,25 +110,28 @@ public class Program {
                     writeBytes(i.exportOpcode(), dos);
                 }else if(i.type == InstructionType.u32Param){
                     writeBytes(i.exportOpcode(), dos);
-                    for(int j = 0; j < i.param.length(); j++){
-                        dos.write(Integer.parseInt(i.param.substring(j, j + 1)));
+                    write4ByteByCal(Integer.parseInt(i.param), dos);
+                }else if(i.type == InstructionType.u64Param){
+                    writeBytes(i.exportOpcode(), dos);
+                    if(i.param.length() != 16){
+                        write8ByteByCal(Integer.parseInt(i.param), dos);
+                    }else{
+                        for(int j = 0; j + 2 <= i.param.length(); j+=2){
+                            dos.write(Integer.parseInt(i.param.substring(j, j + 2), 16));
+                        }
                     }
                 }
             }
         }
 
-        for(int i = 0; i * 8 < res.length(); i++){
-            byte b = (byte)Integer.parseInt(res.toString().substring(i, i + 8), 16);
-            System.out.println(res.toString().substring(i, i + 8));
-            dos.write(b);
-        }
 
         dos.close();
-        fos.close();
+        //fos.close();
+
     }
 
     public void export(String s) throws IOException {
-        File file = new File("files/output.c1");
+        File file = new File("files/output1.c0");
         FileWriter fs = new FileWriter(file);
         fs.write(magic + "\n");
         fs.write(version + "\n");

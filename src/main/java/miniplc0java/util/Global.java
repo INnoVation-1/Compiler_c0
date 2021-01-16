@@ -6,7 +6,7 @@ public class Global {
     public boolean isConst;
 
     public Global() {
-        this.count = 4;
+        this.count = 8;
         this.isConst = false;
     }
 
