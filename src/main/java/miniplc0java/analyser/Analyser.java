@@ -800,7 +800,7 @@ as_expr -> expr 'as' IDENT
         }
 
         if (objectStack.size() != 1) {
-            throw new ExpectedTokenError(TokenType.IDENT, peek());
+            throw new TokenError(TokenType.IDENT, peek());
         }
         System.out.println("endOPG");
         return t;
@@ -1517,7 +1517,7 @@ as_expr -> expr 'as' IDENT
         if (token.getTokenType() == tt) {
             return next();
         } else {
-            throw new ExpectedTokenError(tt, token);
+            throw new TokenError(tt, token);
         }
     }
 
