@@ -1,8 +1,10 @@
 package miniplc0java.tokenizer;
 
 public class CharCheck {
-    private static char[] signChar = {'+', '-', '*', '/', '=', '!', '<', '>',
-            '(', ')', '{', '}', ',', ':', ';'};
+    private static char[] signChar = {'+', '-', '*', '/',
+            '=', '!', '<', '>',
+            '(', ')', '{', '}',
+            ',', ':', ';'};
     private static char[] escapeChar = {'\\', '"', '\'', 'n', 'r', 't'};
 
     public static boolean isSignChar(char c) {
@@ -22,5 +24,4 @@ public class CharCheck {
         }
         return false;
     }
-
 }

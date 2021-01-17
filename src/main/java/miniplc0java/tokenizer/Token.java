@@ -17,13 +17,6 @@ public class Token {
         this.endPos = endPos;
     }
 
-    public Token(Token token) {
-        this.tokenType = token.tokenType;
-        this.value = token.value;
-        this.startPos = token.startPos;
-        this.endPos = token.endPos;
-    }
-
     public TokenType getTokenType() {
         return tokenType;
     }
