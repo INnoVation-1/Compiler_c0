@@ -5,12 +5,12 @@ import miniplc0java.util.Pos;
 public class AnalyzeError extends CompileError {
     private static final long serialVersionUID = 1L;
 
-    ErrorCode code;
+    ErrorCode errCode;
     Pos pos;
 
     @Override
     public ErrorCode getErr() {
-        return code;
+        return errCode;
     }
 
     @Override
@@ -19,16 +19,16 @@ public class AnalyzeError extends CompileError {
     }
 
     /**
-     * @param code
+     * @param errCode
      * @param pos
      */
-    public AnalyzeError(ErrorCode code, Pos pos) {
-        this.code = code;
+    public AnalyzeError(ErrorCode errCode, Pos pos) {
+        this.errCode = errCode;
         this.pos = pos;
     }
 
     @Override
     public String toString() {
-        return new StringBuilder().append("Analyze Error: ").append(code).append(", at: ").append(pos).toString();
+        return new StringBuilder().append("Analyze Error: ").append(errCode).append(", at: ").append(pos).toString();
     }
 }
