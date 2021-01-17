@@ -93,7 +93,7 @@ public class Tokenizer {
                     if (Character.isDigit(it.peekChar())) {
                         String ePart = lexDigit();
                         return new Token(TokenType.DOUBLE_LITERAL,
-                                new DoubleLiteral(integerPart, flostPart, ePart),
+                                integerPart + "." + flostPart + "E" + ePart,
                                 prevPos, it.currentPos());
                     } else {
                         throw new TokenizeError(ErrorCode.InvalidInput, it.nextPos());
