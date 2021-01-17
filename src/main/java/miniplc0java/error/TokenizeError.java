@@ -14,16 +14,6 @@ public class TokenizeError extends Throwable {
         this.pos = pos;
     }
 
-    public TokenizeError(ErrorCode err, Integer row, Integer col) {
-        super();
-        this.err = err;
-        this.pos = new Pos(row, col);
-    }
-
-    public ErrorCode getErr() {
-        return err;
-    }
-
     public Pos getPos() {
         return pos;
     }
