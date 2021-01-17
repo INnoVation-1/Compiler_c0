@@ -5,12 +5,12 @@ import miniplc0java.util.Pos;
 public class TokenizeError extends Throwable {
     private static final long serialVersionUID = 1L;
 
-    private ErrorCode err;
+    private ErrorCode errCode;
     private Pos pos;
 
-    public TokenizeError(ErrorCode err, Pos pos) {
+    public TokenizeError(ErrorCode errCode, Pos pos) {
         super();
-        this.err = err;
+        this.errCode = errCode;
         this.pos = pos;
     }
 
@@ -20,6 +20,6 @@ public class TokenizeError extends Throwable {
 
     @Override
     public String toString() {
-        return new StringBuilder().append("Tokenize Error: ").append(err).append(", at: ").append(pos).toString();
+        return new StringBuilder().append("Tokenize Error: ").append(errCode).append(", at: ").append(pos).toString();
     }
 }
