@@ -24,11 +24,6 @@ public class App {
         }
         System.out.println(infile + "---" + outFile);
 
-//        String ssss = System.getProperty("user.dir");
-//        System.out.println(System.getProperty("user.dir"));
-//        InputStream input = new FileInputStream("files/input.c0");
-//        String outFile = "files/output.c0";
-
         Scanner scanner;
         scanner = new Scanner(input);
         var iter = new StringIter(scanner);
@@ -47,30 +42,10 @@ public class App {
         }
         System.out.println(result.toString());
 
-//        var tokens = new ArrayList<Token>();
-//        try {
-//            while (true) {
-//                var token = tokenizer.nextToken();
-//                if (token.getTokenType().equals(TokenType.EOF)) {
-//                    break;
-//                }
-//                tokens.add(token);
-//            }
-//        } catch (Exception e) {
-//            // 遇到错误不输出，直接退出
-//            System.err.println(e);
-//            System.exit(0);
-//            return;
-//        }
-//        for (Token token : tokens) {
-//            System.out.println(token.toString());
-//        }
         var analyzer = new Analyser(tokenizer);
         analyzer.analyse();
         analyzer.program.exportBinary(outFile);
     }
-
-
 
     private static Tokenizer tokenize(StringIter iter) {
         var tokenizer = new Tokenizer(iter);
