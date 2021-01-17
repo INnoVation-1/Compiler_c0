@@ -89,10 +89,10 @@ public class Analyser {
 
     public void analyseFunction() throws CompileError, TokenizeError {
         System.out.println("startFunction");
-        //  指示当前不是_start函数
+        //  指示当前是否是_start函数
         isStart = false;
         function = new Function();
-        //  清空局部变量数量
+
         symbolTable.num = 0;
         expect(TokenType.FN_KW);
 
